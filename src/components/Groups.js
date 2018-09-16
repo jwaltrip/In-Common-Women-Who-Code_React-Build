@@ -52,12 +52,22 @@ class GroupsPage extends Component {
 
     return (
       <div>
-        <h1>Groups Page</h1>
-
         <div className="container-fluid">
 
-          {<TopicsList topics={topics} />}
+          {/*{<TopicsList topics={topics} />}*/}
 
+        </div>
+        <div className="container mt-5">
+          {/*<div className="table-responsive-sm mt-5">*/}
+            <table className="table table-striped table-hover">
+              <thead className="thead-dark text-center">
+              <tr>
+                <th scope="col">Groups</th>
+              </tr>
+              </thead>
+              <TopicsList topics={topics} />
+            </table>
+          {/*</div>*/}
         </div>
       </div>
     );
@@ -66,11 +76,11 @@ class GroupsPage extends Component {
 
 const TopicsList = ({ topics }) => {
   return (
-    <div>
+    <tbody>
       {Object.keys(topics).map(key =>
         <Group key={key} topic={topics[key].topic} />
       )}
-    </div>
+    </tbody>
   );
 };
 

@@ -6,7 +6,7 @@ import SignOutButton from './SignOut';
 
 const Navigation = ({ authUser }) => {
   return (
-    <navbar className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <navbar className="navbar navbar-expand-sm navbar-dark bg-dark">
       { authUser
         ? <NavigationAuth />
         : <NavigationNonAuth />
