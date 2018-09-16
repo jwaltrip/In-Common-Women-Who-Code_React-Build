@@ -45,6 +45,11 @@ class App extends Component {
           {/*<hr/>*/}
 
           <Route
+            exact path={routes.SIGN_IN}
+            component={SignInPage}
+          />
+
+          <Route
             exact path={routes.LANDING}
             component={LandingPage}
           />
@@ -52,11 +57,6 @@ class App extends Component {
           <Route
             exact path={routes.SIGN_UP}
             component={SignUpPage}
-          />
-
-          <Route
-            exact path={routes.SIGN_IN}
-            component={SignInPage}
           />
 
           <Route
