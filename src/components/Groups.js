@@ -52,12 +52,7 @@ class GroupsPage extends Component {
 
     return (
       <div>
-        <div className="container-fluid">
-
-          {/*{<TopicsList topics={topics} />}*/}
-
-        </div>
-        <div className="container mt-5">
+        <div className="container sticky-top mt-5">
           {/*<div className="table-responsive-sm mt-5">*/}
             <table className="table table-striped table-hover">
               <thead className="thead-dark text-center">

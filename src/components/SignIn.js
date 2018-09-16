@@ -7,7 +7,7 @@ import * as routes from '../constants/routes';
 
 const SignInPage = ({ history }) => {
   return (
-    <div>
+    <div className="container">
       <h1>Sign In</h1>
       <SignInForm history={history}/>
       <SignUpLink/>
@@ -72,25 +72,27 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(byPropKey('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+      <div className="container">
+        <form onSubmit={this.onSubmit}>
+          <input
+            value={email}
+            onChange={event => this.setState(byPropKey('email', event.target.value))}
+            type="text"
+            placeholder="Email Address"
+          /><br/>
+          <input
+            value={password}
+            onChange={event => this.setState(byPropKey('password', event.target.value))}
+            type="password"
+            placeholder="Password"
+          /><br/>
+          <button disabled={isInvalid} type="submit">
+            Sign In
+          </button>
 
-        { error && <p>{error.message}</p> }
-      </form>
+          { error && <p>{error.message}</p> }
+        </form>
+      </div>
     );
   }
 }
