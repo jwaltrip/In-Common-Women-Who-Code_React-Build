@@ -17,52 +17,78 @@ import GroupsPage from './Groups';
 
 import * as routes from '../constants/routes';
 
-const App = () =>
-  <Router>
-    <div>
-      <Navigation />
+import { firebase } from '../firebase';
 
-      <hr/>
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-      <Route
-        exact path={routes.LANDING}
-        component={LandingPage}
-      />
+    this.state = {
+      authUser: null,
+    };
+  }
 
-      <Route
-        exact path={routes.SIGN_UP}
-        component={SignUpPage}
-      />
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({ authUser })
+        : this.setState({ authUser: null });
+    });
+  }
 
-      <Route
-        exact path={routes.SIGN_IN}
-        component={SignInPage}
-      />
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navigation authUser={this.state.authUser} />
 
-      <Route
-        exact path={routes.PASSWORD_FORGET}
-        component={PasswordForgetPage}
-      />
+          {/*<hr/>*/}
 
-      <Route
-        exact path={routes.HOME}
-        component={HomePage}
-      />
+          <Route
+            exact path={routes.LANDING}
+            component={LandingPage}
+          />
 
-      <Route
-        exact path={routes.ACCOUNT}
-        component={AccountPage}
-      />
+          <Route
+            exact path={routes.SIGN_UP}
+            component={SignUpPage}
+          />
 
-      {/*// TODO add Groups route*/}
-      <Route
-        exact path={routes.GROUPS}
-        component={GroupsPage}
-      />
+          <Route
+            exact path={routes.SIGN_IN}
+            component={SignInPage}
+          />
 
-      {/*// TODO add Content Posts route*/}
+          <Route
+            exact path={routes.PASSWORD_FORGET}
+            component={PasswordForgetPage}
+          />
 
-    </div>
-  </Router>;
+          <Route
+            exact path={routes.HOME}
+            component={HomePage}
+          />
+
+          <Route
+            exact path={routes.ACCOUNT}
+            component={AccountPage}
+          />
+
+          {/*// TODO add Groups route*/}
+          <Route
+            exact path={routes.GROUPS}
+            component={GroupsPage}
+          />
+
+          {/*// TODO add Content Posts route*/}
+
+        </div>
+      </Router>
+    );
+  }
+
+}
+
+
 
 export default App;

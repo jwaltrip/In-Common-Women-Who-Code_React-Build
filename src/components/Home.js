@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HomePage = () =>
-  <div>
+  <div className="mx-auto" style={{ width: '100%' }}>
     <h1>Home Page</h1>
   </div>;
 
