@@ -43,20 +43,24 @@ class SignUpForm extends Component {
       username,
       email,
       passwordOne,
+      error,
     } = this.state;
 
-    const {
-      history,
-    } = this.props;
+    const { history } = this.props;
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(routes.SIGN_IN);
-      })
-      .catch(error => {
-        // console.log('error creating user', error);
-        this.setState(byPropKey('error', error ));
+    (async function() {
+      auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+        .catch(error => {
+          console.log('error creating user', error);
+          this.setState(byPropKey('error', error ));
+        });
+    })()
+      .then(() => {
+        if (!error) {
+          this.setState({ ...INITIAL_STATE });
+          console.log('redirect url', routes.HOME);
+          history.push(routes.HOME);
+        }
       });
 
     e.preventDefault();
@@ -117,7 +121,6 @@ const SignUpLink = () => {
   return (
     <p>
       Don't have an account?
-      {' '}
       <Link to={routes.SIGN_UP}>Sign Up</Link>
     </p>
   );
